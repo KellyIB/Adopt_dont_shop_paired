@@ -1,12 +1,3 @@
-# As a visitor,
-# When I visit a shelter's show page,
-# I see a list of reviews for that shelter
-# Each review will have:
-# - title
-# - rating
-# - content
-# - an optional picture
-
 require 'rails_helper'
 
 describe "As a visitor" do

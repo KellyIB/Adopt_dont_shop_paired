@@ -96,3 +96,22 @@ good_dogs.pets.create(image: "https://static.boredpanda.com/blog/wp-content/uplo
                           approximate_age:  3,
                           description: "Hound Mix. Well trained in basic commands. Will catch treats.",
                           adoptable?: true)
+
+#Reviews
+review_1 = howlin_puppers.reviews.create(title: "Amazing Experience!",
+                                          rating: "5 Milkbones",
+                                          content: "My experience at howlin' puppers was amazing!",
+                                          image: "https://steemitimages.com/DQmZyHkjuh4NLQLMAzTXVyz7CPTmtarfXm673bXQphJqoii/22-24_tn.jpg")
+
+review_2 = howlin_puppers.reviews.create(title: "Great place!",
+                                          rating: "4 Milkbones",
+                                          content: "It would be 5 milkbones, but they didn't have complimentary coffee")
+
+review_3 = boulder_rescue.reviews.create(title: "Amazing Experience!",
+                                          rating: "5 Milkbones",
+                                          content: "My experience at howlin' puppers was amazing!",
+                                          image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png")
+
+review_4 = boulder_rescue.reviews.create(title: "Great place!",
+                                            rating: "4 Milkbones",
+                                            content: "It would be 5 milkbones, but they didn't have complimentary coffee")
