@@ -33,7 +33,6 @@ describe "As a visitor" do
         expect(page).to have_content("Amazing Experience!")
         expect(page).to have_content("5 Milkbones")
         expect(page).to have_content("My experience at howlin' puppers was amazing!")
-        save_and_open_page
         expect(page).to have_css("img[src*='#{@review_1.image}']")
       end
 
