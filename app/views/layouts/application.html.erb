@@ -7,6 +7,9 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
+  <% flash.each do |type, message| %>
+    <%= message %>
+  <% end %>
   <body style="background: url(https://img.wallpapersafari.com/desktop/1680/1050/32/78/dTuctf.jpg);
               background-size:cover;
               height:100%;
