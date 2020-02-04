@@ -7,8 +7,9 @@
   <p><%= link_to "All Pets At #{@shelter.name}", "/shelters/#{@shelter.id}/pets"%></p>
   <p><%= link_to "Update #{@shelter.name}", "/shelters/#{@shelter.id}/edit" %></p>
   <p><%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %></p>
-
 <h2><%= @shelter.name %> Reviews</h2>
+<p><%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%></p>
+
 <% @shelter.reviews.each do |review| %>
   <section id="review-<%= review.id %>">
     <%= review.title %><br>
@@ -17,4 +18,5 @@
     <img src= <%= review.image %>><br><br>
   </section>
   <% end %>
+
 </center>
