@@ -9,13 +9,13 @@
   <p><%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %></p>
 <h2><%= @shelter.name %> Reviews</h2>
 <p><%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%></p>
-
 <% @shelter.reviews.each do |review| %>
   <section id="review-<%= review.id %>">
     <%= review.title %><br>
     <%= review.rating %><br>
     <%= review.content %><br>
     <img src= <%= review.image %>><br><br>
+    <p><%= link_to "Edit Review", "/shelters/#{@shelter.id}/#{review.id}/edit"%></p>
   </section>
   <% end %>
 
