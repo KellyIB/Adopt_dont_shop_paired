@@ -39,12 +39,12 @@ describe "As a visitor" do
       expect(page).to have_content("They even had complimentary coffee!!")
     end
 
-    # it "I see a flash message when I try to submit an incomplete form" do
-    #   visit "/shelters/#{@howlin_puppers.id}/#{@review_4.id}/edit"
-    #   fill_in :title, with: "It really didn't smell that bad."
-    #   fill_in :content, with: "I was surprised that it didn't smell that bad. There are a lot of pets here. #Febreeze?"
-    #   click_button "Submit Review"
-    #   expect(page).to have_content("Rating can't be blank")
-    # end
+    it "I see a flash message when I try to submit an incomplete form" do
+      visit "/shelters/#{@howlin_puppers.id}/#{@review_4.id}/edit"
+      fill_in :title, with: "It really didn't smell that bad."
+      fill_in :content, with: "I was surprised that it didn't smell that bad. There are a lot of animals here. #Febreeze?"
+      click_button "Save Review"
+      expect(page).to have_content("Rating can't be blank")
+    end
   end
 end
