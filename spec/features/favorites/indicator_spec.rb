@@ -1,10 +1,5 @@
 require 'rails_helper'
 
-# As a visitor
-# I see a favorite indicator in my navigation bar
-# The favorite indicator shows a count of pets in my favorites list
-# I can see this favorite indicator from any page in the application
-
 describe "As a visitor" do
   describe "On any page, I see a favorite indicator on my nav bar" do
     before(:each) do
@@ -37,24 +32,35 @@ describe "As a visitor" do
 
     end
 
-    xit "shows number of favorited pets" do
+    it "shows number of favorited pets" do
       visit "/pets/#{@cody.id}"
+
+      within '.topnav' do
+        expect(page).to have_content("You have 0 in Favorites.")
+      end
+
       click_link("Add #{@cody.name} to Favorites")
-        within "#nav_bar" do
-          expect(page).to have_content("You have 1 in Favorites.")
-        end
+      expect(page).to have_content("#{@cody} Was Favorited!")
+
+      within ".topnav" do
+        expect(page).to have_content("You have 1 in Favorites.")
+      end
 
       visit "/pets/#{@tycho.id}"
-      click_link("Add to Favorites")
-        within "#nav_bar" do
-          expect(page).to have_content("You have 2 in Favorites.")
-        end
+      click_link("Add #{@tycho.name} to Favorites")
+      expect(page).to have_content("#{@tycho} Was Favorited!")
+
+      within ".topnav" do
+        expect(page).to have_content("You have 2 in Favorites.")
+      end
 
       visit "/pets/#{@artemis.id}"
-      click_link("Add to Favorites")
-        within "#nav_bar" do
-          expect(page).to have_content("You have 3 in Favorites.")
-        end
+      click_link("Add #{@artemis.name} to Favorites")
+      expect(page).to have_content("#{@artemis} Was Favorited!")
+
+      within ".topnav" do
+        expect(page).to have_content("You have 3 in Favorites.")
+      end
     end
   end
 end
