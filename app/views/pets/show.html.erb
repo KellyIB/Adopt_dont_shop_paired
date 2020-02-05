@@ -9,6 +9,7 @@
   <% else %>
     <p>Adoption Status: Pending</p>
   <% end %>
+  <p><%= link_to "Add #{@pet.name} to Favorites", "/favorites/#{@pet.id}", method: :patch %></p>
   <p> <%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %> </p>
   <p> <%= link_to "Delete Pet Profile", "/pets/#{@pet.id}", method: :delete %> </p>
 </center>

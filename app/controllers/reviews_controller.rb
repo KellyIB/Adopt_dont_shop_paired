@@ -21,13 +21,13 @@ class ReviewsController < ApplicationController
   end
 
   def update
-    shelter = Shelter.find(params[:shelter_id])
-    review = Review.find(params[:review_id])
-    review.update(review_params)
-    if review.save
-      redirect_to "/shelters/#{shelter.id}"
+    @shelter = Shelter.find(params[:shelter_id])
+    @review = Review.find(params[:review_id])
+
+    if @review.update(review_params)
+      redirect_to "/shelters/#{@shelter.id}"
     else
-      flash[:error] = review.errors.full_messages.to_sentence
+      flash[:error] = @review.errors.full_messages.to_sentence
       render :edit
     end
   end
