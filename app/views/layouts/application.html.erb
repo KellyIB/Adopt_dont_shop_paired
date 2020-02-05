@@ -15,19 +15,23 @@
               min-height : 100%;
               min-width : 100%;
               background-size:100% 100%;">
-    <div class="topnav">
-      <section id="nav_bar">
-      <a class="active" href="/">Adopt Don't Shop  </a>
-      <a href="/shelters">Shelters</a>
-      <a href="/pets">Pets</a>
-    </section>
 
+    <div class="topnav">
+      <center>
+        <%= link_to "Shelters", "/shelters" %>
+        <%= link_to "Pets", "/pets" %>
+        <%= link_to "Favorites", "/favorites" %>
+        <h4>You have <%= favorites.total_count %> in Favorites.</h4>
+        </center>
     </div>
 
-    <% flash.each do |type, message| %>
-    <p><%= message %></p>
-    <% end %>
+    <center>
+      <% flash.each do |type, message| %>
+        <h3><%= message %></h3>
+      <% end %>
+    </center>
 
     <%= yield %>
+
   </body>
 </html>
