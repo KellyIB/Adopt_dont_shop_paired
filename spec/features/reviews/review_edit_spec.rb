@@ -32,7 +32,7 @@ describe "As a visitor" do
       fill_in :title, with: "Totally Amazing Experience!"
       fill_in :rating, with: "4.5 Milkbones"
       fill_in :content, with: "They even had complimentary coffee!!"
-      click_button "Submit Review"
+      click_button "Save Review"
       expect(current_path).to eq("/shelters/#{@howlin_puppers.id}")
       expect(page).to have_content("Totally Amazing Experience!")
       expect(page).to have_content("4.5 Milkbones")
