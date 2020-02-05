@@ -28,10 +28,12 @@ describe "As a visitor" do
     it "I see a link to edit a review for that shelter" do
       visit "/shelters/#{@howlin_puppers.id}"
       click_link("Edit Review", match: :first)
-      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/#{@review_1.id}/edit")
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/reviews/#{@review_1.id}/edit")
+      # save_and_open_page
       fill_in :title, with: "Totally Amazing Experience!"
       fill_in :rating, with: "4.5 Milkbones"
       fill_in :content, with: "They even had complimentary coffee!!"
+      # save_and_open_page
       click_button "Save Review"
       expect(current_path).to eq("/shelters/#{@howlin_puppers.id}")
       expect(page).to have_content("Totally Amazing Experience!")
@@ -40,9 +42,13 @@ describe "As a visitor" do
     end
 
     it "I see a flash message when I try to submit an incomplete form" do
-      visit "/shelters/#{@howlin_puppers.id}/#{@review_4.id}/edit"
-      fill_in :title, with: "It really didn't smell that bad."
-      fill_in :content, with: "I was surprised that it didn't smell that bad. There are a lot of animals here. #Febreeze?"
+      visit "/shelters/#{@howlin_puppers.id}"
+      click_link("Edit Review", match: :first)
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/reviews/#{@review_1.id}/edit")
+
+      fill_in :title, with: "Totally Amazing Experience!"
+      fill_in :rating, with: "4"
+      fill_in :content, with: "They even had complimentary coffee!!"
       click_button "Save Review"
       expect(page).to have_content("Rating can't be blank")
     end
