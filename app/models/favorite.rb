@@ -8,4 +8,7 @@ class Favorite
     @contents << pet
   end
 
+  def total_count
+    @contents.count
+  end
 end

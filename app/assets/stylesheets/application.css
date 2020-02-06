@@ -18,6 +18,7 @@
 .topnav {
   background-color: #333;
   overflow: hidden;
+  text-align: center;
   width: 100%;
 }
 
@@ -45,4 +46,10 @@
 
 img {
     width:  300px;
+}
+
+h4 {
+  text-align: right;
+  padding: 14px;
+  color: #FFFFFF;
 }

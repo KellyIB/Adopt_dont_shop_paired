@@ -1,8 +1,16 @@
+# As a visitor
+# When I have added pets to my favorites list
+# And I visit my favorites index page ("/favorites")
+# I see all pets I've favorited
+# Each pet in my favorites shows the following information:
+# - pet's name (link to pets show page)
+# - pet's image
+
 require 'rails_helper'
 
 describe "As a visitor" do
-  describe "On any page, I see a favorite indicator on my nav bar" do
-    before(:each) do
+  describe "Favorites index page" do
+    before :each do
       @howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
       @fantastic_friends = Shelter.create(name: "Fantastic friends", address: "9872 Friendly Lane", city: "New York City", state: "NY", zip: "10001")
 
@@ -29,37 +37,37 @@ describe "As a visitor" do
         approximate_age: 2,
         description: "I'm the best of boys",
         sex: 'Male')
-
     end
 
-    it "shows number of favorited pets" do
-      visit "/pets/#{@cody.id}"
-
-      within '.topnav' do
-        expect(page).to have_content("You have 0 in Favorites.")
-      end
-
-      click_link("Add #{@cody.name} to Favorites")
-      expect(page).to have_content("#{@cody.name} Was Favorited!")
-
-      within ".topnav" do
-        expect(page).to have_content("You have 1 in Favorites.")
-      end
-
-      visit "/pets/#{@tycho.id}"
-      click_link("Add #{@tycho.name} to Favorites")
-      expect(page).to have_content("#{@tycho.name} Was Favorited!")
-
-      within ".topnav" do
-        expect(page).to have_content("You have 2 in Favorites.")
-      end
+    it "I see all of my favorites pets" do
+      visit "/pets/#{@rue.id}"
+      click_link("Add #{@rue.name} to Favorites")
 
       visit "/pets/#{@artemis.id}"
       click_link("Add #{@artemis.name} to Favorites")
-      expect(page).to have_content("#{@artemis.name} Was Favorited!")
+
+      visit "/pets/#{@cody.id}"
+      click_link("Add #{@cody.name} to Favorites")
 
       within ".topnav" do
-        expect(page).to have_content("You have 3 in Favorites.")
+        click_link 'Favorites'
+      end
+
+      expect(current_path).to eq('/favorites')
+
+      within "#favorite-#{@rue.id}" do
+        expect(page).to have_css("img[src*='#{@rue.image}']")
+        expect(page).to have_content("Name: #{@rue.name}")
+      end
+
+      within "#favorite-#{@artemis.id}" do
+        expect(page).to have_css("img[src*='#{@artemis.image}']")
+        expect(page).to have_content("Name: #{@artemis.name}")
+      end
+
+      within "#favorite-#{@cody.id}" do
+        expect(page).to have_css("img[src*='#{@cody.image}']")
+        expect(page).to have_content("Name: #{@cody.name}")
       end
     end
   end
