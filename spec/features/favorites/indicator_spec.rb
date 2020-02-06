@@ -40,7 +40,7 @@ describe "As a visitor" do
       end
 
       click_link("Add #{@cody.name} to Favorites")
-      expect(page).to have_content("#{@cody} Was Favorited!")
+      expect(page).to have_content("#{@cody.name} Was Favorited!")
 
       within ".topnav" do
         expect(page).to have_content("You have 1 in Favorites.")
@@ -48,7 +48,7 @@ describe "As a visitor" do
 
       visit "/pets/#{@tycho.id}"
       click_link("Add #{@tycho.name} to Favorites")
-      expect(page).to have_content("#{@tycho} Was Favorited!")
+      expect(page).to have_content("#{@tycho.name} Was Favorited!")
 
       within ".topnav" do
         expect(page).to have_content("You have 2 in Favorites.")
@@ -56,7 +56,7 @@ describe "As a visitor" do
 
       visit "/pets/#{@artemis.id}"
       click_link("Add #{@artemis.name} to Favorites")
-      expect(page).to have_content("#{@artemis} Was Favorited!")
+      expect(page).to have_content("#{@artemis.name} Was Favorited!")
 
       within ".topnav" do
         expect(page).to have_content("You have 3 in Favorites.")
