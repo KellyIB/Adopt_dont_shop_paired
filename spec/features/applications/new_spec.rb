@@ -30,20 +30,19 @@ describe "As a visitor" do
         description: "I'm the best of boys",
         sex: 'Male')
 
-    end
-
-    it "can make a new application from the favorites index" do
-
       visit "/pets/#{@cody.id}"
       click_link("Add #{@cody.name} to Favorites")
 
       visit "/pets/#{@tycho.id}"
       click_link("Add #{@tycho.name} to Favorites")
 
-       visit "/pets/#{@artemis.id}"
+      visit "/pets/#{@artemis.id}"
       click_link("Add #{@artemis.name} to Favorites")
 
       visit "/favorites"
+    end
+
+    it "can make a new application from the favorites index" do
 
       click_link "Apply to Adopt"
       expect(current_path).to eq("/favorites/applications/new")
@@ -73,16 +72,6 @@ describe "As a visitor" do
     end
 
     it "will see an error message when submitting an incomplete new application" do
-      visit "/pets/#{@cody.id}"
-      click_link("Add #{@cody.name} to Favorites")
-
-      visit "/pets/#{@tycho.id}"
-      click_link("Add #{@tycho.name} to Favorites")
-
-       visit "/pets/#{@artemis.id}"
-      click_link("Add #{@artemis.name} to Favorites")
-
-      visit "/favorites"
 
       click_link "Apply to Adopt"
       expect(current_path).to eq("/favorites/applications/new")
@@ -103,10 +92,36 @@ describe "As a visitor" do
       fill_in :phone_number, with: "602 963 1504"
       fill_in :description, with: "I like dogs and I only have 5"
       click_on "Submit Application"
+
       expect(page).to have_content("")
       expect(current_path).to eq("/favorites/applications/new")
-      
     end
 
+    it "shows all pets applied for" do
+      click_link "Apply to Adopt"
+      expect(current_path).to eq("/favorites/applications/new")
+
+      within "#app-pet-#{@tycho.id}" do
+        check("favorites[]")
+      end
+
+      within "#app-pet-#{@artemis.id}" do
+        check("favorites[]")
+      end
+
+      fill_in :name, with: "John Doe"
+      fill_in :address, with: "123 easy st"
+      fill_in :city, with: "LA"
+      fill_in :state, with: "CA"
+      fill_in :zip, with: "80009"
+      fill_in :phone_number, with: "602 963 1504"
+      fill_in :description, with: "I like dogs and I only have 5"
+      click_on "Submit Application"
+
+      within"#pets-applied-for" do
+        expect(page).to have_content("#{@tycho.name}")
+        expect(page).to have_content("#{@artemis.name}")
+      end
+    end
   end
 end
