@@ -47,7 +47,7 @@ describe "As a visitor" do
 
       click_link "Apply to Adopt"
       expect(current_path).to eq("/favorites/applications/new")
-      
+
       within "#app-pet-#{@tycho.id}" do
         check("favorites[]")
       end
@@ -71,5 +71,42 @@ describe "As a visitor" do
       expect(page).to_not have_content("#{@tycho.name}")
       expect(page).to_not have_content("#{@artemis.name}")
     end
+
+    it "will see an error message when submitting an incomplete new application" do
+      visit "/pets/#{@cody.id}"
+      click_link("Add #{@cody.name} to Favorites")
+
+      visit "/pets/#{@tycho.id}"
+      click_link("Add #{@tycho.name} to Favorites")
+
+       visit "/pets/#{@artemis.id}"
+      click_link("Add #{@artemis.name} to Favorites")
+
+      visit "/favorites"
+
+      click_link "Apply to Adopt"
+      expect(current_path).to eq("/favorites/applications/new")
+
+      within "#app-pet-#{@tycho.id}" do
+        check("favorites[]")
+      end
+
+      within "#app-pet-#{@artemis.id}" do
+        check("favorites[]")
+      end
+
+      fill_in :name, with: "John Doe"
+      fill_in :address, with: "123 easy st"
+      fill_in :city, with: "LA"
+      fill_in :state, with: "CA"
+      fill_in :zip, with: ""
+      fill_in :phone_number, with: "602 963 1504"
+      fill_in :description, with: "I like dogs and I only have 5"
+      click_on "Submit Application"
+      expect(page).to have_content("")
+      expect(current_path).to eq("/favorites/applications/new")
+      
+    end
+
   end
 end
