@@ -10,7 +10,7 @@ class ApplicationsController < ApplicationController
     if application.save
       check_pets.each do |pet|
         pet.applications << application
-        favorites.remove_pet(pet.id)
+        favorites.favorite_to_applied_for(pet.id)
       end
       redirect_to "/favorites"
       flash[:success] = "Your Application Was Submitted!"
