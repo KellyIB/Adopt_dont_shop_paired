@@ -13,8 +13,8 @@ class Favorite
     @contents.count
   end
 
-  def remove_pet(pet)
-    @contents.delete(pet.id)
+  def remove_pet(pet_id)
+    @contents.delete(pet_id)
   end
 
   def remove_all

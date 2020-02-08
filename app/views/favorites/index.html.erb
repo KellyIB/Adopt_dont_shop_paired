@@ -1,6 +1,7 @@
 <center>
   <% if !favorites.contents.empty? %>
   <h1>All Favorited Pets</h1>
+  <p><%= link_to "Apply to Adopt", "/favorites/applications/new" %></p>
     <% favorites.pet_objects.each do |pet| %>
       <section id= 'favorite-<%=pet["id"]%>'>
         <img src= <%= pet["image"] %>>
