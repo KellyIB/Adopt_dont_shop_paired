@@ -11,7 +11,7 @@ describe "As a visitor" do
         approximate_age: 3,
         description: "People say I'm a dream",
         sex: 'Female',
-        adoptable?: false)
+        adoptable?: true)
 
       @tycho = @fantastic_friends.pets.create!(image: "https://www.rover.com/blog/wp-content/uploads/2019/05/pupper-featured.png",
         name: 'Tycho',
@@ -28,7 +28,7 @@ describe "As a visitor" do
       expect(page).to have_content("Aproximate Age: #{@artemis.approximate_age}")
       expect(page).to have_content("Sex: #{@artemis.sex}")
       expect(page).to have_content("Description: #{@artemis.description}")
-      expect(page).to have_content("Adoption Status: Pending")
+      expect(page).to have_content("Adoption Status: Adoptable")
 
       visit "/pets/#{@tycho.id}"
       expect(page).to have_css("img[src*='#{@tycho.image}']")

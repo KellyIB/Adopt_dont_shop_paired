@@ -20,29 +20,25 @@ RSpec.describe Shelter, type: :model do
       name: 'Rue',
       approximate_age: 1,
       description: "I'm a gargoyle sometimes",
-      sex: 'Female',
-      adoptable?: false)
+      sex: 'Female')
 
     brian = howlin_puppers.pets.create(image: "https://i.pinimg.com/originals/8f/a9/11/8fa91183ac378ec914a1f1f83a0df941.jpg",
       name: 'Brian',
       approximate_age: 12,
       description: "Crabs are people. Legit or quit!",
-      sex: 'Male',
-      adoptable?: false)
+      sex: 'Male')
 
     artemis = howlin_puppers.pets.create(image: "https://cdn.steemitimages.com/DQmUbxeLd9sLL3gCL8L8vtucbEdmEG5CCDQqTNLa2hZbsrW/IMG_20180611_200246_283.jpg",
       name: 'Artemis',
       approximate_age: 3,
       description: "People say I'm a dream",
-      sex: 'Female',
-      adoptable?: true)
+      sex: 'Female')
 
     tycho = howlin_puppers.pets.create(image: "https://www.rover.com/blog/wp-content/uploads/2019/05/pupper-featured.png",
       name: 'Tycho',
       approximate_age: 3,
       description: "I'm somewhat of a troublemaker",
-      sex: 'Male',
-      adoptable?: true)
+      sex: 'Male')
 
       expect(howlin_puppers.pet_count).to eq(4)
     end
