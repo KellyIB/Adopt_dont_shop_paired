@@ -15,10 +15,10 @@ RSpec.describe Pet, type: :model do
     it {should have_many(:applications).through(:application_pets)}
   end
 
-
   describe "instance methods" do
     it ".adoptable_pet_sort" do
     howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
+
     rue = howlin_puppers.pets.create(image: "https://steemitimages.com/DQmZyHkjuh4NLQLMAzTXVyz7CPTmtarfXm673bXQphJqoii/22-24_tn.jpg",
       name: 'Rue',
       approximate_age: 1,
@@ -47,8 +47,27 @@ RSpec.describe Pet, type: :model do
       sex: 'Male',
       adoptable?: true)
 
+      application_1 = Application.create!(name: "Tin Lee", address: "926 Long Rd.", city: "Austin", state: "Texas", zip: "60636", phone_number: "345-954-1212", description: "Dogs amuse me and I'm bored often. I need entertainment.")
+
+      rue.applications << application_1
+      brian.applications << application_1
+
       expected = [artemis, tycho, rue, brian]
       expect(Pet.adoptable_pet_sort).to eq(expected)
+    end
+
+    it ".applicant_name" do
+      howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
+      artemis = howlin_puppers.pets.create(image: "https://cdn.steemitimages.com/DQmUbxeLd9sLL3gCL8L8vtucbEdmEG5CCDQqTNLa2hZbsrW/IMG_20180611_200246_283.jpg",
+        name: 'Artemis',
+        approximate_age: 3,
+        description: "People say I'm a dream",
+        sex: 'Female')
+
+        application = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
+        ApplicationPet.create!(application: application, pet: artemis, approved?: true)
+
+        expect(artemis.applicant_name(artemis.id)).to eq("John Doe")
     end
   end
 end

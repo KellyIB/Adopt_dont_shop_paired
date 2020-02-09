@@ -18,11 +18,29 @@ describe "As a visitor" do
         description: "I'm somewhat of a troublemaker",
         sex: 'Male')
 
+      @rue = @howlin_puppers.pets.create(image: "https://steemitimages.com/DQmZyHkjuh4NLQLMAzTXVyz7CPTmtarfXm673bXQphJqoii/22-24_tn.jpg",
+        name: 'Rue',
+        approximate_age: 1,
+        description: "I'm sometimes a gargoyle",
+        sex: 'Female')
+
+      @cody = @fantastic_friends.pets.create!(image: "https://images2.minutemediacdn.com/image/upload/c_crop,h_2716,w_4827,x_0,y_314/f_auto,q_auto,w_1100/v1554924989/shape/mentalfloss/istock-627892528.jpg",
+        name: 'Cody',
+        approximate_age: 2,
+        description: "I'm the best of boys",
+        sex: 'Male')
+
         visit "/pets/#{@artemis.id}"
         click_link("Add #{@artemis.name} to Favorites")
 
         visit "/pets/#{@tycho.id}"
         click_link("Add #{@tycho.name} to Favorites")
+
+        visit "/pets/#{@rue.id}"
+        click_link("Add #{@rue.name} to Favorites")
+
+        visit "/pets/#{@cody.id}"
+        click_link("Add #{@cody.name} to Favorites")
     end
 
     it "Removes a pet from favorites and decrements the indicator by 1" do
@@ -30,11 +48,17 @@ describe "As a visitor" do
       visit '/favorites'
 
       within ".topnav" do
-        expect(page).to have_content("You have 2 in Favorites.")
+        expect(page).to have_content("You have 4 in Favorites.")
       end
 
       within "#favorite-#{@artemis.id}" do
         click_link "Remove #{@artemis.name} From Favorites"
+      end
+
+      expect(current_path).to eq("/favorites")
+
+      within ".topnav" do
+        expect(page).to have_content("You have 3 in Favorites.")
       end
 
       expect(current_path).to eq('/favorites')
@@ -45,8 +69,13 @@ describe "As a visitor" do
         expect(page).to have_content("Name: #{@tycho.name}")
       end
 
+      visit "/pets/#{@cody.id}"
+      click_link "Remove #{@cody.name} From Favorites"
+
+      expect(current_path).to eq("/pets/#{@cody.id}")
+
       within ".topnav" do
-        expect(page).to have_content("You have 1 in Favorites.")
+        expect(page).to have_content("You have 2 in Favorites.")
       end
     end
 
@@ -55,7 +84,7 @@ describe "As a visitor" do
       visit '/favorites'
 
       within ".topnav" do
-        expect(page).to have_content("You have 2 in Favorites.")
+        expect(page).to have_content("You have 4 in Favorites.")
       end
 
       click_link "Remove All From Favorites"
