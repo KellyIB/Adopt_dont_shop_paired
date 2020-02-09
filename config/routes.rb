@@ -31,6 +31,6 @@ Rails.application.routes.draw do
 
   get "/favorites/applications/new", to: 'applications#new'
   post "/favorites/applications", to: 'applications#create'
-
+  get "/applications/:application_id", to: 'applications#show'
 
 end
