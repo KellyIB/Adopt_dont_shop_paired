@@ -19,4 +19,8 @@
 
   <p> <%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %> </p>
   <p> <%= link_to "Delete Pet Profile", "/pets/#{@pet.id}", method: :delete %> </p>
+<h2>Applications for <%= @pet.name %></h2>
+<% @pet.applications.each do |application| %>
+<p><%= link_to "#{application.name}'s Application", "/applications/#{application.id}" %> </p>
+<% end  %>
 </center>
