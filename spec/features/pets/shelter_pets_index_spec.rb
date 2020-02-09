@@ -50,8 +50,10 @@ describe "Shelter pets index" do
   end
 
   it "shows a count of the number of pets at that shelter" do
+
     within "#pet-count" do
       expect(page).to have_content("There Are Currently 2 Pets At #{@howlin_puppers.name}")
     end
+    
   end
 end

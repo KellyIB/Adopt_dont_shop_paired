@@ -41,11 +41,12 @@ describe "As a visitor" do
 
     it "I see an approve application link for every pet applied for" do
       visit "/applications/#{@application_1.id}"
+      
       within "#application-pet-#{@cody.id}" do
         click_link "Approve Application"
       end
+
       expect(current_path).to eq("/pets/#{@cody.id}")
-      # save_and_open_page
       expect(page).to have_content("Adoption Status: Pending")
       expect(page).to have_content("On Hold For: #{@application_1.name}.")
     end

@@ -29,15 +29,6 @@ describe "As a visitor" do
         approximate_age: 2,
         description: "I'm the best of boys",
         sex: 'Male')
-      #
-      # visit "/pets/#{@cody.id}"
-      # click_link("Add #{@cody.name} to Favorites")
-      #
-      # visit "/pets/#{@tycho.id}"
-      # click_link("Add #{@tycho.name} to Favorites")
-      #
-      # visit "/pets/#{@artemis.id}"
-      # click_link("Add #{@artemis.name} to Favorites")
 
       @application_1 = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
       @application_2 = Application.create!(name: "Tin Lee", address: "926 Long Rd.", city: "Austin", state: "Texas", zip: "60636", phone_number: "345-954-1212", description: "Dogs amuse me and I'm bored often. I need entertainment.")
@@ -50,6 +41,7 @@ describe "As a visitor" do
 
     it "can see application information" do
       visit "/applications/#{@application_1.id}"
+
       expect(page).to have_content("#{@application_1.name}")
       expect(page).to have_content("#{@application_1.address}")
       expect(page).to have_content("#{@application_1.city}")
@@ -61,6 +53,7 @@ describe "As a visitor" do
       expect(page).to have_content("#{@tycho.name}")
 
       visit "/applications/#{@application_2.id}"
+
       expect(page).to have_content("#{@application_2.name}")
       expect(page).to have_content("#{@application_2.address}")
       expect(page).to have_content("#{@application_2.city}")
@@ -70,6 +63,7 @@ describe "As a visitor" do
       expect(page).to have_content("#{@application_2.description}")
       expect(page).to have_content("#{@cody.name}")
       expect(page).to have_content("#{@artemis.name}")
+      
       click_link "#{@artemis.name}"
       expect(current_path).to eq("/pets/#{@artemis.id}")
     end

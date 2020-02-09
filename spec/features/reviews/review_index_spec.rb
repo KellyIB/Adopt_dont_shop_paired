@@ -40,7 +40,6 @@ describe "As a visitor" do
         expect(page).to have_content("Great place!")
         expect(page).to have_content("4 Milkbones")
         expect(page).to have_content("It would be 5 milkbones, but they didn't have complimentary coffee")
-        # expect(page).to_not have_css("img[src*='#{@review_2.image}']")
       end
     end
   end
