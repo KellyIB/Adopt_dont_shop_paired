@@ -1,5 +1,5 @@
 <center>
-  
+
   <h1><%= @application.name %>'s Adoption Application</h1>
   <p>Name: <%= @application.name %></p>
   <p>Address: <%= @application.address %></p>
@@ -9,10 +9,17 @@
   <p>Phone_number: <%= @application.phone_number %></p>
   <p>Description: <%= @application.description %></p><br>
   <h3>Pets Applied For</h3>
+
   <% @application.pets.each do |pet| %>
     <section id = "application-pet-<%= pet.id %>" >
       <%= link_to "#{pet.name}", "/pets/#{pet.id}" %><br>
-      <%= link_to "Approve Application", "/applications/#{@application.id}/pets/#{pet.id}/approve", method: :patch %><br>
+
+      <% if pet.adoptable? %>
+        <%= link_to "Approve Application", "/applications/#{@application.id}/pets/#{pet.id}/approve", method: :patch %><br>
+      <% else %>
+        <%= link_to "Revoke Application", "/applications/#{@application.id}/pets/#{pet.id}/revoke", method: :patch %>
+      <% end %>
+      
     </section>
   <% end %>
 

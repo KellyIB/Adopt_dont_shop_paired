@@ -5,17 +5,15 @@
   <p> Aproximate Age: <%= @pet.approximate_age %> </p>
   <p> Sex: <%= @pet.sex %> </p>
 
-  <% if @pet.adoptable? %>
+  <% if pet_in_favorites?(@pet.id)%>
+  <p>Adoption Status: Adoptable</p>
+    <p><%= link_to "Remove #{@pet.name} From Favorites", "/favorites/#{@pet.id}", method: :delete %></p>
+    <% elsif @pet.adoptable? %>
     <p>Adoption Status: Adoptable</p>
+    <p><%= link_to "Add #{@pet.name} to Favorites", "/favorites/#{@pet.id}", method: :patch %></p>
   <% else %>
     <p>Adoption Status: Pending</p>
     <p>On Hold For: <%= @pet.applicant_name(@pet.id) %>. </p>
-  <% end %>
-
-  <% if pet_in_favorites?(@pet.id) %>
-    <p><%= link_to "Remove #{@pet.name} From Favorites", "/favorites/#{@pet.id}", method: :delete %></p>
-  <% else%>
-    <p><%= link_to "Add #{@pet.name} to Favorites", "/favorites/#{@pet.id}", method: :patch %></p>
   <% end %>
 
   <p> <%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %> </p>
