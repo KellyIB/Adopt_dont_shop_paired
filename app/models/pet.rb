@@ -8,4 +8,10 @@ class Pet < ApplicationRecord
   def self.adoptable_pet_sort
     Pet.order(adoptable?: :desc)
   end
+
+  def has_applications
+    binding.pry
+  end
+
+
 end
