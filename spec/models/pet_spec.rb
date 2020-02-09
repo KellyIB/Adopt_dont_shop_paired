@@ -6,11 +6,15 @@ RSpec.describe Pet, type: :model do
     it {should validate_presence_of(:name)}
     it {should validate_presence_of(:approximate_age)}
     it {should validate_presence_of(:sex)}
+    it {should validate_inclusion_of(:adoptable?).in_array([true, false])}
   end
 
   describe "relationships" do
     it {should belong_to(:shelter)}
+    it {should have_many(:application_pets)}
+    it {should have_many(:applications).through(:application_pets)}
   end
+
 
   describe "instance methods" do
     it ".adoptable_pet_sort" do

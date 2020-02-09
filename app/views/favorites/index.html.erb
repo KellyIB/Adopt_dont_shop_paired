@@ -1,6 +1,8 @@
 <center>
   <% if !favorites.contents.empty? %>
-  <h1>All Favorited Pets</h1>
+    <h1>All Favorited Pets</h1>
+    <section id='favorited-pets'>
+    <p><%= link_to "Apply to Adopt", "/favorites/applications/new" %></p>
     <% favorites.pet_objects.each do |pet| %>
       <section id= 'favorite-<%=pet["id"]%>'>
         <img src= <%= pet["image"] %>>
@@ -10,6 +12,14 @@
     <% end %>
     <p><%= link_to "Remove All From Favorites", "/favorites", method: :delete %></p>
   <% else %>
-  <h1>No Pets in Favorites</h1>
+    <h1>No Pets in Favorites</h1>
   <% end %>
+  </section>
+  <br>
+  <h1>Pets Applied For</h1>
+  <section id= "pets-applied-for">
+    <% pets_applied_for.each do |pet| %>
+    <p>Name: <%= link_to pet.name, "/pets/#{pet["id"]}" %></p>
+    <% end %>
+  </section>
 </center>

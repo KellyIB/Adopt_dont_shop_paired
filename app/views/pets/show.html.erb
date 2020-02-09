@@ -9,6 +9,7 @@
     <p>Adoption Status: Adoptable</p>
   <% else %>
     <p>Adoption Status: Pending</p>
+    <p>On Hold For: <%= @pet.applicant_name(@pet.id) %>. </p>
   <% end %>
 
   <% if pet_in_favorites?(@pet.id) %>
@@ -18,5 +19,7 @@
   <% end %>
 
   <p> <%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %> </p>
-  <p> <%= link_to "Delete Pet Profile", "/pets/#{@pet.id}", method: :delete %> </p>
+  <p> <%= link_to "Delete Pet Profile", "/pets/#{@pet.id}", method: :delete %> </p><br>
+  <p> <%= link_to "Applications for #{@pet.name}", "/pets/#{@pet.id}/applications" %> </p>
+
 </center>
