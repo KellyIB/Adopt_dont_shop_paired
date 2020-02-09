@@ -57,7 +57,7 @@ describe "As a visitor" do
     end
 
     it "can see all the applications for a pet on a pet's show page" do
-      visit "/pets/#{@goofy.id}"
+      visit "/pets/#{@goofy.id}/applications"
       expect(page).to have_content("There are no applications for this pet, yet.")
     end
 
