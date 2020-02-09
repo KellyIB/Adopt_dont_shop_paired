@@ -26,8 +26,11 @@ describe "As a visitor" do
     end
 
     it "I see a link to delete a review for that shelter" do
+
       visit "/shelters/#{@howlin_puppers.id}"
+
       click_link("Delete Review", match: :first)
+
       expect(current_path).to eq("/shelters/#{@howlin_puppers.id}")
       expect(page).to_not have_content("Amazing Experience!")
       expect(page).to_not have_content("5 Milkbones")

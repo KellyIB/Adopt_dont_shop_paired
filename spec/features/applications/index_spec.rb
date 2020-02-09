@@ -45,23 +45,24 @@ describe "As a visitor" do
       ApplicationPet.create!(application: @application_2, pet: @artemis)
     end
 
+      it "can see all the applications for a pet on a pet's show page" do
+        visit "/pets/#{@cody.id}"
 
-    it "can see all the applications for a pet on a pet's show page" do
-      visit "/pets/#{@cody.id}"
-      click_link "Applications for #{@cody.name}"
-      expect(current_path).to eq("/pets/#{@cody.id}/applications")
-      expect(page).to have_content("#{@application_1.name}")
-      expect(page).to have_content("#{@application_2.name}")
-      click_link "#{@application_1.name}"
-      expect(current_path).to eq("/applications/#{@application_1.id}")
-    end
+        click_link "Applications for #{@cody.name}"
 
-    it "can see all the applications for a pet on a pet's show page" do
-      visit "/pets/#{@goofy.id}/applications"
-      expect(page).to have_content("There are no applications for this pet, yet.")
-    end
+        expect(current_path).to eq("/pets/#{@cody.id}/applications")
+        expect(page).to have_content("#{@application_1.name}")
+        expect(page).to have_content("#{@application_2.name}")
 
+        click_link "#{@application_1.name}"
 
+        expect(current_path).to eq("/applications/#{@application_1.id}")
+      end
 
+      it "can see all the applications for a pet on a pet's show page" do
+        visit "/pets/#{@goofy.id}/applications"
+
+        expect(page).to have_content("There are no applications for this pet, yet.")
+      end
     end
   end
