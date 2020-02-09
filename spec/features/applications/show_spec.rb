@@ -59,7 +59,7 @@ describe "As a visitor" do
       expect(page).to have_content("#{@application_1.description}")
       expect(page).to have_content("#{@cody.name}")
       expect(page).to have_content("#{@tycho.name}")
-      
+
       visit "/applications/#{@application_2.id}"
       expect(page).to have_content("#{@application_2.name}")
       expect(page).to have_content("#{@application_2.address}")
@@ -70,6 +70,8 @@ describe "As a visitor" do
       expect(page).to have_content("#{@application_2.description}")
       expect(page).to have_content("#{@cody.name}")
       expect(page).to have_content("#{@artemis.name}")
+      click_link "#{@artemis.name}"
+      expect(current_path).to eq("/pets/#{@artemis.id}")
     end
 
   end
