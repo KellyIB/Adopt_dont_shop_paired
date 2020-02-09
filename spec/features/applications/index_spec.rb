@@ -30,6 +30,12 @@ describe "As a visitor" do
         description: "I'm the best of boys",
         sex: 'Male')
 
+      @goofy = @fantastic_friends.pets.create(image: "https://static.boredpanda.com/blog/wp-content/uploads/2016/09/dogs-catching-treats-fotos-frei-schnauze-christian-vieler-66-57e8d9d0ec7ee__880.jpg",
+        name: "Goofy",
+        approximate_age:  3,
+        description: "Hound Mix. Well trained in basic commands. Will catch treats.",
+        adoptable?: true)
+
       @application_1 = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
       @application_2 = Application.create!(name: "Tin Lee", address: "926 Long Rd.", city: "Austin", state: "Texas", zip: "60636", phone_number: "345-954-1212", description: "Dogs amuse me and I'm bored often. I need entertainment.")
 
@@ -46,6 +52,11 @@ describe "As a visitor" do
       expect(page).to have_content("#{@application_2.name}")
       click_link "#{@application_1.name}"
       expect(current_path).to eq("/applications/#{@application_1.id}")
+    end
+
+    it "can see all the applications for a pet on a pet's show page" do
+      visit "/pets/#{@goofy.id}"
+      expect(page).to have_content("There are no applications for this pet, yet.")
     end
 
 
