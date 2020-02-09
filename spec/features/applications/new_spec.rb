@@ -67,8 +67,11 @@ describe "As a visitor" do
       expect(current_path).to eq("/favorites")
       expect(page).to have_content("Your Application Was Submitted!")
       expect(page).to have_content("#{@cody.name}")
-      expect(page).to_not have_content("#{@tycho.name}")
-      expect(page).to_not have_content("#{@artemis.name}")
+
+      within '#favorited-pets' do
+        expect(page).to_not have_content("#{@tycho.name}")
+        expect(page).to_not have_content("#{@artemis.name}")
+      end
     end
 
     it "will see an error message when submitting an incomplete new application" do

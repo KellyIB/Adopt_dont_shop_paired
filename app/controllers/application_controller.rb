@@ -10,4 +10,7 @@ class ApplicationController < ActionController::Base
     favorites.contents.include?(pet)
   end
 
+  def pets_applied_for
+    @pets_with_apps = Pet.all.select{|pet| !pet.applications.empty?}
+  end
 end
