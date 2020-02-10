@@ -7,21 +7,21 @@ describe "As a visitor" do
       @fantastic_friends = Shelter.create(name: "Fantastic friends", address: "9872 Friendly Lane", city: "New York City", state: "NY", zip: "10001")
 
       @review_1 = @howlin_puppers.reviews.create(title: "Amazing Experience!",
-                                                rating: "5 Milkbones",
+                                                rating: 5,
                                                 content: "My experience at howlin' puppers was amazing!",
                                                 image: "https://steemitimages.com/DQmZyHkjuh4NLQLMAzTXVyz7CPTmtarfXm673bXQphJqoii/22-24_tn.jpg")
 
       @review_2 = @howlin_puppers.reviews.create(title: "Great place!",
-                                                rating: "4 Milkbones",
+                                                rating: 4,
                                                 content: "It would be 5 milkbones, but they didn't have complimentary coffee")
 
       @review_3 = @fantastic_friends.reviews.create(title: "Amazing Experience!",
-                                                rating: "5 Milkbones",
+                                                rating: 5,
                                                 content: "My experience at howlin' puppers was amazing!",
                                                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png")
 
       @review_4 = @fantastic_friends.reviews.create(title: "Great place!",
-                                                  rating: "4 Milkbones",
+                                                  rating: 4,
                                                   content: "It would be 5 milkbones, but they didn't have complimentary coffee")
     end
 
@@ -31,14 +31,14 @@ describe "As a visitor" do
 
       within "#review-#{@review_1.id}" do
         expect(page).to have_content("Amazing Experience!")
-        expect(page).to have_content("5 Milkbones")
+        expect(page).to have_content(5)
         expect(page).to have_content("My experience at howlin' puppers was amazing!")
         expect(page).to have_css("img[src*='#{@review_1.image}']")
       end
 
       within "#review-#{@review_2.id}" do
         expect(page).to have_content("Great place!")
-        expect(page).to have_content("4 Milkbones")
+        expect(page).to have_content(4)
         expect(page).to have_content("It would be 5 milkbones, but they didn't have complimentary coffee")
       end
     end

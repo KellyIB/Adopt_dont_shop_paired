@@ -60,7 +60,7 @@ describe "shelter show page" do
                                                 rating: "4",
                                                 content: "It would be 5 milkbones, but they didn't have complimentary coffee")
 
-      review_3 = fantastic_friends.reviews.create(title: "Amazing Experience!",
+      review_3 = howlin_puppers.reviews.create(title: "Amazing Experience!",
                                                 rating: "5",
                                                 content: "My experience at howlin' puppers was amazing!",
                                                 image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e0/SNice.svg/1200px-SNice.svg.png")
@@ -74,11 +74,10 @@ describe "shelter show page" do
       ApplicationPet.create!(application: application_2, pet: artemis)
 
       visit "/shelters/#{howlin_puppers.id}"
-
       within "#statistics" do
         expect(page).to have_content("Pet Count: 3")
         expect(page).to have_content("Average Rating: 4.7")
-        expect(page).to have_content("Application On File: 2")
+        expect(page).to have_content("Applications on File: 2")
       end
     end
   end
