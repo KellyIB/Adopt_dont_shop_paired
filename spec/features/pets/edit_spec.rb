@@ -27,11 +27,26 @@ describe "Pet edit page" do
       click_button "Save"
 
       expect(current_path).to eq("/pets/#{@rue.id}")
+      expect(page).to have_content("Pet Profile Updated")
       expect(page).to have_content("Rwo Chains")
       expect(page).to have_css("img[src*='#{@rue.image}']")
       expect(page).to have_content(@rue.approximate_age)
       expect(page).to have_content(@rue.sex)
       expect(page).to have_content(@rue.description)
+    end
+
+    it "I see a flash message when I try to edit pet with an incomplete for." do
+      visit "/pets/#{@rue.id}"
+      click_link "Edit #{@rue.name}"
+
+      expect(current_path).to eq("/pets/#{@rue.id}/edit")
+
+      fill_in :name, with: ''
+      click_button "Save"
+      
+      expect(current_path).to eq("/pets/#{@rue.id}/edit")
+      expect(page).to have_content("Name can't be blank.")
+
     end
 
     it "Pets index page shows edit pet under each pet listed" do
