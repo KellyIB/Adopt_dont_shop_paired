@@ -14,13 +14,13 @@ describe "As a visitor" do
       expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/reviews/new")
 
       fill_in :title, with: "It didn't smell that bad."
-      fill_in :rating, with: "3 Milkbones"
+      fill_in :rating, with: 3
       fill_in :content, with: "I was surprised that it didn't smell that bad. There are a lot of pets here. #Febreeze?"
       click_button "Submit Review"
 
       expect(current_path).to eq("/shelters/#{@howlin_puppers.id}")
       expect(page).to have_content("It didn't smell that bad.")
-      expect(page).to have_content("3 Milkbones")
+      expect(page).to have_content(3)
       expect(page).to have_content("I was surprised that it didn't smell that bad. There are a lot of pets here. #Febreeze?")
     end
 

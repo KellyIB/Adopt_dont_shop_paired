@@ -13,7 +13,8 @@
     <p><%= link_to "Add #{@pet.name} to Favorites", "/favorites/#{@pet.id}", method: :patch %></p>
   <% else %>
     <p>Adoption Status: Pending</p>
-    <p>On Hold For: <%= @pet.applicant_name(@pet.id) %>. </p>
+    <p>On Hold For: <%= link_to @pet.applicant(@pet.id).name, "/applications/#{@pet.applicant(@pet.id).id}" %> </p>
+
   <% end %>
 
   <p> <%= link_to "Edit #{@pet.name}", "/pets/#{@pet.id}/edit" %> </p>

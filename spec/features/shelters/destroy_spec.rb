@@ -38,7 +38,7 @@ describe "Delete a shelter" do
                                                 image: "https://steemitimages.com/DQmZyHkjuh4NLQLMAzTXVyz7CPTmtarfXm673bXQphJqoii/22-24_tn.jpg")
 
       title = "It didn't smell that bad."
-      rating = "3 Milkbones"
+      rating = 3
       content = "I was surprised that it didn't smell that bad. There are a lot of pets here. #Febreeze?"
 
       visit "/shelters/#{howlin_puppers.id}/reviews/new"
@@ -52,7 +52,7 @@ describe "Delete a shelter" do
 
       within "#review-#{review_test.id}" do
         expect(page).to have_content("It didn't smell that bad.")
-        expect(page).to have_content("3 Milkbones")
+        expect(page).to have_content(3)
         expect(page).to have_content("I was surprised that it didn't smell that bad. There are a lot of pets here. #Febreeze?")
       end
 

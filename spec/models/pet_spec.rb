@@ -58,7 +58,7 @@ RSpec.describe Pet, type: :model do
 end
 
 describe "instance methods" do
-    it "applicant_name" do
+    it "applicant" do
       howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
       artemis = howlin_puppers.pets.create(image: "https://cdn.steemitimages.com/DQmUbxeLd9sLL3gCL8L8vtucbEdmEG5CCDQqTNLa2hZbsrW/IMG_20180611_200246_283.jpg",
         name: 'Artemis',
@@ -69,7 +69,7 @@ describe "instance methods" do
       application = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
       ApplicationPet.create!(application: application, pet: artemis, approved?: true)
 
-      expect(artemis.applicant_name(artemis.id)).to eq("John Doe")
+      expect(artemis.applicant(artemis.id).name).to eq("John Doe")
     end
   end
 end

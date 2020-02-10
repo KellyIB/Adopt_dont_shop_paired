@@ -48,7 +48,7 @@ describe "As a visitor" do
 
       expect(current_path).to eq("/pets/#{@cody.id}")
       expect(page).to have_content("Adoption Status: Pending")
-      expect(page).to have_content("On Hold For: #{@application_1.name}.")
+      expect(page).to have_content("On Hold For: #{@application_1.name}")
 
       visit "/applications/#{@application_1.id}"
 
@@ -58,7 +58,8 @@ describe "As a visitor" do
 
       expect(current_path).to eq("/pets/#{@tycho.id}")
       expect(page).to have_content("Adoption Status: Pending")
-      expect(page).to have_content("On Hold For: #{@application_1.name}.")
+      click_link "#{@application_1.name}"
+      expect(current_path).to eq("/applications/#{@application_1.id}")
     end
 
     it "cannot approve an application for a pet who already has an approved application" do
