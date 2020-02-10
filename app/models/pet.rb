@@ -10,9 +10,9 @@ class Pet < ApplicationRecord
     Pet.order(adoptable?: :desc)
   end
 
-  def applicant_name(pet_id)
+  def applicant(pet_id)
     pet = Pet.find(pet_id)
-    pet.application_pets.where(approved?: true).first.application.name
+    pet.application_pets.where(approved?: true).first.application
   end
 
 end

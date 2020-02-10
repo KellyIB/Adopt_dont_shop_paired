@@ -38,5 +38,22 @@ describe 'As a visitor' do
         expect(page).to have_content(@sex)
       end
     end
+
+    it "shows a flash message when I fail to fill in all fields" do
+      visit "/shelters/#{@howlin_puppers.id}/pets"
+      click_link "Create New Pet"
+
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/pets/new")
+
+      fill_in :image, with: "#{@image}"
+      fill_in :name, with: ""
+      fill_in :description, with: "#{@description}"
+      fill_in :approximate_age, with: "#{@age}"
+      fill_in :sex, with: "#{@sex}"
+      click_on "Create Pet"
+
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/pets/new")
+      expect(page).to have_content("Name can't be blank")
+    end
   end
 end

@@ -22,8 +22,8 @@
       <%= @shelter.avg_rating.round(1) %>
     <% end %>
     <p>Applications on File: <%= @shelter.applications_on_file %></p>
-
   </section>
+
 <h2><%= @shelter.name %> Reviews</h2>
 <p><%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%></p>
 <% @shelter.reviews.each do |review| %>

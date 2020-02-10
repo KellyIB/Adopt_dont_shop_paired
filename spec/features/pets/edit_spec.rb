@@ -43,9 +43,9 @@ describe "Pet edit page" do
 
       fill_in :name, with: ''
       click_button "Save"
-      
+
       expect(current_path).to eq("/pets/#{@rue.id}/edit")
-      expect(page).to have_content("Name can't be blank.")
+      expect(page).to have_content("Name can't be blank")
 
     end
 
