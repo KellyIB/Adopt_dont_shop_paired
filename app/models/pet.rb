@@ -15,5 +15,4 @@ class Pet < ApplicationRecord
     pet.application_pets.where(approved?: true).first.application.name
   end
 
-
 end
