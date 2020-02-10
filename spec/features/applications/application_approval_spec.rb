@@ -39,9 +39,9 @@ describe "As a visitor" do
       ApplicationPet.create!(application: @application_2, pet: @artemis)
     end
 
-    it "I see an approve application link for every pet applied for" do
+    it "I see an approve application link for every pet applied for, I may approve the application for multiple pets" do
       visit "/applications/#{@application_1.id}"
-      
+
       within "#application-pet-#{@cody.id}" do
         click_link "Approve Application"
       end
@@ -49,6 +49,55 @@ describe "As a visitor" do
       expect(current_path).to eq("/pets/#{@cody.id}")
       expect(page).to have_content("Adoption Status: Pending")
       expect(page).to have_content("On Hold For: #{@application_1.name}.")
+
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@tycho.id}" do
+        click_link "Approve Application"
+      end
+
+      expect(current_path).to eq("/pets/#{@tycho.id}")
+      expect(page).to have_content("Adoption Status: Pending")
+      expect(page).to have_content("On Hold For: #{@application_1.name}.")
+    end
+
+    it "cannot approve an application for a pet who already has an approved application" do
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@cody.id}" do
+        click_link "Approve Application"
+      end
+
+      visit "/applications/#{@application_2.id}"
+
+      within "#application-pet-#{@cody.id}" do
+        expect(page).to have_content("Revoke Application")
+        expect(page).not_to have_link("Approve Application")
+      end
+    end
+
+    it "After approved, an application may be revoked" do
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@cody.id}" do
+        click_link "Approve Application"
+      end
+
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@cody.id}" do
+        click_link "Revoke Application"
+      end
+
+      expect(current_path).to eq("/applications/#{@application_1.id}")
+
+      within "#application-pet-#{@cody.id}" do
+        expect(page).to have_link("Approve Application")
+      end
+
+      visit "/pets/#{@cody.id}"
+      expect(page).to have_content("Adoption Status: Adoptable")
+      expect(page).not_to have_content("On Hold For: #{@application_1.name}.")
     end
   end
 end

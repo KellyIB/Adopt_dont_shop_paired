@@ -64,10 +64,10 @@ RSpec.describe Pet, type: :model do
         description: "People say I'm a dream",
         sex: 'Female')
 
-        application = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
-        ApplicationPet.create!(application: application, pet: artemis, approved?: true)
+      application = Application.create!(name: "John Doe", address: "123 Anywhere St.", city: "Malibu", state: "Florida", zip: "50392", phone_number: "352-956-1248", description: "I hardly ever leave my house and I need company.")
+      ApplicationPet.create!(application: application, pet: artemis, approved?: true)
 
-        expect(artemis.applicant_name(artemis.id)).to eq("John Doe")
+      expect(artemis.applicant_name(artemis.id)).to eq("John Doe")
     end
   end
 end
