@@ -11,4 +11,13 @@ class Shelter < ApplicationRecord
     pending = pets.where(adoptable?: false)
     !pending.empty?
   end
+
+  def avg_rating
+    reviews.average(:rating)
+  end
+
+  def applications_on_file
+    # pets.joins(:application_pets).count
+    pets.joins(:applications).select('applications.*').distinct.count
+  end
 end

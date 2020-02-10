@@ -8,12 +8,22 @@
   <p><%= link_to "All Pets At #{@shelter.name}", "/shelters/#{@shelter.id}/pets"%></p>
   <p><%= link_to "Update #{@shelter.name}", "/shelters/#{@shelter.id}/edit" %></p>
 
-  <% if !@shelter.adoption_pending_check %>  
+  <% if !@shelter.adoption_pending_check %>
     <p><%= link_to "Delete Shelter", "/shelters/#{@shelter.id}", method: :delete %></p>
     <% else %>
     <p>This Shelter Has Pets With Pending Applications</p>
   <% end %>
+  <section id="statistics">
+    <h2>Shelter Stats</h2>
+    <p>Pet Count: <%= @shelter.pet_count %> </p>
+    <p>Average Rating: <% if @shelter.avg_rating == nil  %></p>
+      <p>There are no reviews for this shelter yet.</p>
+      <% else %>
+      <%= @shelter.avg_rating.round(1) %>
+    <% end %>
+    <p>Applications on File: <%= @shelter.applications_on_file %></p>
 
+  </section>
 <h2><%= @shelter.name %> Reviews</h2>
 <p><%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%></p>
 <% @shelter.reviews.each do |review| %>
