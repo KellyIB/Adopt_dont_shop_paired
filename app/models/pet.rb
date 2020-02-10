@@ -13,7 +13,6 @@ class Pet < ApplicationRecord
   def applicant_name(pet_id)
     pet = Pet.find(pet_id)
     pet.application_pets.where(approved?: true).first.application.name
-    # @application = pet.application_pets.where(approved?: true).first.application.name
   end
 
 

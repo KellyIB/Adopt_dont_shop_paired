@@ -6,4 +6,9 @@ class Shelter < ApplicationRecord
   def pet_count
     pets.count
   end
+
+  def adoption_pending_check
+    pending = pets.where(adoptable?: false)
+    !pending.empty?
+  end
 end

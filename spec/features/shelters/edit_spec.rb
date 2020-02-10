@@ -23,6 +23,7 @@ describe "Shelter edit page" do
       click_button "Save Changes"
 
       expect(current_path).to eq("/shelters/#{@boulder_rescue.id}")
+      expect(page).to have_content("Bowlder Restqueue Was Updated")
       expect(page).to have_content("Bowlder Restqueue")
       expect(page).to have_content("742 Sleepy Road")
       expect(page).to have_content("Boulder")
@@ -52,6 +53,21 @@ describe "Shelter edit page" do
       expect(page).to have_content("Fort Collins")
       expect(page).to have_content("CO")
       expect(page).to have_content("85042")
+    end
+
+    it "When I fail to fill in all fields I see a flash message and am directed back to the edit form" do
+
+      click_link("Update #{@boulder_rescue.name}")
+      expect(current_path).to eq("/shelters/#{@boulder_rescue.id}/edit")
+
+      fill_in :name, with: "Bowlder Restqueue"
+      fill_in :address, with: "742 Sleepy Road"
+      fill_in :city, with: ""
+      fill_in :state, with: "CO"
+      fill_in :zip, with: "80205"
+      click_button "Save Changes"
+
+      expect(page).to have_content("City can't be blank")
     end
   end
 end

@@ -19,6 +19,10 @@
     # Expect to be redirected to /shelters
     expect(current_path).to eq('/shelters')
 
+    # Expect flash message for successful shelter creation
+    shelter = Shelter.last
+    expect(page).to have_content("#{shelter.name} Was Created")
+
     # Checking that the shelter created above was actually created
     new_shelter = Shelter.last
     within "#shelter-#{new_shelter.id}" do
@@ -33,5 +37,22 @@
     expect(page).to have_content("Hollywood")
     expect(page).to have_content("CA")
     expect(page).to have_content("20938")
+  end
+
+  it "when I fail to fill out all fields I see a flash message and the new view is rendered" do
+    visit '/shelters'
+    click_link "Add New Shelter"
+
+    expect(current_path).to eq('/shelters/new')
+    fill_in :name, with: "Barkin' Doggos"
+    fill_in :address, with: "5112 Barkin Plaza"
+    fill_in :city, with: ""
+    fill_in :state, with: "CA"
+    fill_in :zip, with: "20938"
+    click_on "Create New Shelter"
+
+
+    expect(current_path).to eq('/shelters/new')
+    expect(page).to have_content("City can't be blank")
   end
 end

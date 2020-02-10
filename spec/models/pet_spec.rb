@@ -15,7 +15,7 @@ RSpec.describe Pet, type: :model do
     it {should have_many(:applications).through(:application_pets)}
   end
 
-  describe "instance methods" do
+  describe "class methods" do
     it ".adoptable_pet_sort" do
     howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
 
@@ -55,8 +55,10 @@ RSpec.describe Pet, type: :model do
       expected = [artemis, tycho, rue, brian]
       expect(Pet.adoptable_pet_sort).to eq(expected)
     end
+end
 
-    it ".applicant_name" do
+describe "instance methods" do
+    it "applicant_name" do
       howlin_puppers = Shelter.create(name: "Howlin' Puppers", address: "7943 Puppers Drive", city: "Colorado Springs", state: "CO", zip: "80207")
       artemis = howlin_puppers.pets.create(image: "https://cdn.steemitimages.com/DQmUbxeLd9sLL3gCL8L8vtucbEdmEG5CCDQqTNLa2hZbsrW/IMG_20180611_200246_283.jpg",
         name: 'Artemis',
