@@ -78,8 +78,7 @@ describe "Delete pet" do
         name: 'Rue',
         approximate_age: 1,
         description: "I'm sometimes a gargoyle",
-        sex: 'Female',
-        adoptable?: false)
+        sex: 'Female')
 
       tycho = @fantastic_friends.pets.create(image: "https://www.rover.com/blog/wp-content/uploads/2019/05/pupper-featured.png",
           name: 'Tycho',
@@ -100,12 +99,9 @@ describe "Delete pet" do
 
       visit '/favorites'
 
-      within "favorite-#{rue.id}" do
-        expect(page).to have_css("img[src*='#{rue.image}']")
-        expect(page).to have_content("#{rue.name}")
-        expect(page).to have_content("#{rue.approximate_age}")
-      end
-
+      expect(page).to have_css("img[src*='#{rue.image}']")
+      expect(page).to have_content("#{rue.name}")
+      expect(page).to have_content("#{rue.approximate_age}")
       expect(page).not_to have_content('Name: Tycho')
     end
 
