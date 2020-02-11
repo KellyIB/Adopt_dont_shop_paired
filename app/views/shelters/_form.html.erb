@@ -1,0 +1,18 @@
+<%= form_tag path, method: method do %>
+  <%= label_tag :name %>
+  <%= text_field_tag :name, (@shelter.name if @shelter) %>
+
+  <%= label_tag :address %>
+  <%= text_field_tag :address, (@shelter.address if @shelter) %>
+
+  <%= label_tag :city %>
+  <%= text_field_tag :city, (@shelter.city if @shelter) %>
+
+  <%= label_tag :state %>
+  <%= text_field_tag :state, (@shelter.state if @shelter) %>
+
+  <%= label_tag :zip %>
+  <%= text_field_tag :zip, (@shelter.zip if @shelter) %>
+
+  <%= submit_tag button_text %>
+<% end %>
