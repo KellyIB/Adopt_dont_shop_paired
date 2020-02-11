@@ -6,7 +6,7 @@
     <%= text_field_tag :title %>
 
     <%= label_tag :rating %>
-    <%= text_field_tag :rating %>
+    <%= number_field_tag(:rating, nil, min: 1, max: 5)%>
 
     <%= label_tag :content %>
     <%= text_field_tag :content %>

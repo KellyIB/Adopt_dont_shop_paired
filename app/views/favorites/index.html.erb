@@ -22,4 +22,12 @@
     <p>Name: <%= link_to pet.name, "/pets/#{pet["id"]}" %></p>
     <% end %>
   </section>
+  <h1>Approved Applications</h1>
+  <section id="approved-applications">
+    <% favorites.pets_approved.each do |pet| %>
+      <p>Name: <%= link_to pet.name, "/pets/#{pet["id"]}" %></p>
+    <% end %>
+
+
+  </section>
 </center>
