@@ -40,4 +40,9 @@ class Favorite
     end
   end
 
+  def pets_approved
+    Pet.where(adoptable?:false)
+  end
+
+
 end
