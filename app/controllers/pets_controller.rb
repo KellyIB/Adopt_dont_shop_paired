@@ -36,7 +36,6 @@ class PetsController < ApplicationController
     else
       flash[:error] = pet.errors.full_messages.to_sentence
       redirect_to "/pets/#{pet.id}/edit"
-
     end
   end
 
