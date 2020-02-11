@@ -100,5 +100,37 @@ describe "As a visitor" do
       expect(page).to have_content("Adoption Status: Adoptable")
       expect(page).not_to have_content("On Hold For: #{@application_1.name}.")
     end
+
+    it "I see a list of all approved pet applications and every pet name listed is a link to their show page" do
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@cody.id}" do
+        click_link "Approve Application"
+      end
+
+      visit "/applications/#{@application_1.id}"
+
+      within "#application-pet-#{@tycho.id}" do
+        click_link "Approve Application"
+      end
+
+      visit "/favorites"
+      expect(page).to have_content("Approved Applications")
+
+      within "#approved-applications" do
+        expect(page).to have_content("#{@cody.name}")
+        expect(page).to have_content("#{@tycho.name}")
+        click_link "#{@cody.name}"
+      end
+      expect(current_path).to eq("/pets/#{@cody.id}")
+
+      visit "/favorites"
+      within "#approved-applications" do
+        expect(page).to have_content("#{@cody.name}")
+        expect(page).to have_content("#{@tycho.name}")
+        click_link "#{@tycho.name}"
+      end
+      expect(current_path).to eq("/pets/#{@tycho.id}")
+    end
   end
 end
