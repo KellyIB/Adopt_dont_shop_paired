@@ -30,17 +30,17 @@ describe "As a visitor" do
         description: "I'm the best of boys",
         sex: 'Male')
 
-        visit "/pets/#{@artemis.id}"
-        click_link("Add #{@artemis.name} to Favorites")
+      visit "/pets/#{@artemis.id}"
+      click_link("Add #{@artemis.name} to Favorites")
 
-        visit "/pets/#{@tycho.id}"
-        click_link("Add #{@tycho.name} to Favorites")
+      visit "/pets/#{@tycho.id}"
+      click_link("Add #{@tycho.name} to Favorites")
 
-        visit "/pets/#{@rue.id}"
-        click_link("Add #{@rue.name} to Favorites")
+      visit "/pets/#{@rue.id}"
+      click_link("Add #{@rue.name} to Favorites")
 
-        visit "/pets/#{@cody.id}"
-        click_link("Add #{@cody.name} to Favorites")
+      visit "/pets/#{@cody.id}"
+      click_link("Add #{@cody.name} to Favorites")
     end
 
     it "Removes a pet from favorites and decrements the indicator by 1" do

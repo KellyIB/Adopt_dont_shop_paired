@@ -28,6 +28,4 @@ class ApplicationsController < ApplicationController
   def application_params
     params.permit(:name, :address, :city, :state, :zip, :phone_number, :description)
   end
-
-
 end

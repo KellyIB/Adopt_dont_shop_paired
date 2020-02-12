@@ -28,12 +28,12 @@
 <p><%= link_to "New Review", "/shelters/#{@shelter.id}/reviews/new"%></p>
 <% @shelter.reviews.each do |review| %>
   <section id="review-<%= review.id %>">
-    <%= review.title %><br>
-    <%= review.rating %><br>
-    <%= review.content %><br>
-    <img src= <%= review.image %>><br><br>
+    <p><%= review.title %></p>
+    <p><%= review.rating %> Milkbones</p>
+    <p><%= review.content %></p>
+    <img src= <%= review.image %>>
     <p><%= link_to "Edit Review", "/shelters/#{@shelter.id}/reviews/#{review.id}/edit"%></p>
-    <p><%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %>
+    <p><%= link_to "Delete Review", "/shelters/#{@shelter.id}/reviews/#{review.id}", method: :delete %><br><br>
   </section>
   <% end %>
 </center>

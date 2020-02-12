@@ -19,5 +19,4 @@ class ApplicationPetsController < ApplicationController
     @applications_pet.update_column(:approved?, false)
     redirect_to "/applications/#{params[:application_id]}"
   end
-
 end
