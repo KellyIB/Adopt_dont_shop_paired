@@ -1,5 +1,4 @@
 <center>
-
   <h1><%= @application.name %>'s Adoption Application</h1>
   <p>Name: <%= @application.name %></p>
   <p>Address: <%= @application.address %></p>
@@ -19,16 +18,7 @@
       <% else %>
         <%= link_to "Revoke Application", "/applications/#{@application.id}/pets/#{pet.id}/revoke", method: :patch %>
       <% end %>
-      
+
     </section>
   <% end %>
-
-
-
-
-
-
-
-
-
 </center>

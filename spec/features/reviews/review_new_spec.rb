@@ -33,5 +33,23 @@ describe "As a visitor" do
 
       expect(page).to have_content("Rating can't be blank")
     end
+
+    it "Adds a default image when the review is saved without an image" do
+      visit "/shelters/#{@howlin_puppers.id}"
+
+      click_link "New Review"
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}/reviews/new")
+
+      fill_in :title, with: "I like the default image"
+      fill_in :rating, with: 4
+      fill_in :content, with: "The default image is amazing!"
+      click_button "Submit Review"
+
+      expect(current_path).to eq("/shelters/#{@howlin_puppers.id}")
+      expect(page).to have_content("I like the default image")
+      expect(page).to have_content(4)
+      expect(page).to have_content("The default image is amazing!")
+      expect(page).to have_css("img[src*='https://images-na.ssl-images-amazon.com/images/I/71%2BdU6s7%2BHL._AC_SL1500_.jpg']")
+    end
   end
 end

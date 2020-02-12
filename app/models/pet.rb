@@ -14,5 +14,4 @@ class Pet < ApplicationRecord
     pet = Pet.find(pet_id)
     pet.application_pets.where(approved?: true).first.application
   end
-
 end
