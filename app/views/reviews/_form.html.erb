@@ -1,5 +1,4 @@
 <center>
-  <h1>Editing Review</h1>
   <%= form_tag path, method: method do %>
     <%= label_tag :title %>
     <%= text_field_tag :title, (@review.title if @review) %>

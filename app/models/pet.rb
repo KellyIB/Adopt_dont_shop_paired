@@ -12,6 +12,6 @@ class Pet < ApplicationRecord
 
   def applicant(pet_id)
     pet = Pet.find(pet_id)
-    pet.application_pets.where(approved?: true).first.application
+    pet.application_pets.find_by(approved?: true).application
   end
 end

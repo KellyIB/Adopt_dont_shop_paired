@@ -5,7 +5,7 @@
     <%= "There Are Currently #{@shelter.pet_count} Pets At #{@shelter.name}" %><br/><br/>
   </section>
 
-  <% @pets.each do |pet| %>
+  <% @shelter.pets.adoptable_pet_sort.each do |pet| %>
     <section class = "pets">
       <section id= 'pet-<%=pet.id%>'>
         <img src= <%= pet.image %>>

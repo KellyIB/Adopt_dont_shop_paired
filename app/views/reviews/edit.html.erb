@@ -1,6 +1,6 @@
 <center>
 <h1>Editing Review</h1>
-  <%= render partial: 'form', locals: { path: "/shelters/#{@shelter.id}/reviews/#{@review.id}",
+  <%= render partial: 'form', locals: { path: "/shelters/#{@review.shelter.id}/reviews/#{@review.id}",
                                         method: :patch,
                                         button_text: 'Save Review'} %>
 </center>
