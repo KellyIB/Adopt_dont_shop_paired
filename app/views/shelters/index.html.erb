@@ -3,11 +3,11 @@
 <% @shelters.each do |shelter| %>
   <section id="shelter-<%=shelter.id%>">
   <%= link_to shelter.name, "/shelters/#{shelter.id}" %><br/>
-  <%= link_to "Update #{shelter.name}", "/shelters/#{shelter.id}/edit" %><br/>
+  <%= link_to "Update #{shelter.name}", "/shelters/#{shelter.id}/edit" %><br>
   <% if !shelter.adoption_pending_check %>
-    <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %><br/><br/>
+    <%= link_to "Delete Shelter", "/shelters/#{shelter.id}", method: :delete %><br><br>
   <% else %>
-    <p>This Shelter Has Pets With Pending Applications</p>
+    <a>This Shelter Has Pets With Pending Applications</a><br><br>
   <% end %>
   </section>
 <% end %>
