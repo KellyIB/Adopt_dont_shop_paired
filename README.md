@@ -19,7 +19,7 @@ Rails project
 * Paul Debevec - @PaulDebevec
 
 ## Schema 
-<img width="954" src='https://dbdiagram.io/embed/5e44a75d9e76504e0ef161b5'> 
+<iframe width="560" height="315" src='https://dbdiagram.io/embed/5e44a75d9e76504e0ef161b5'> </iframe>
 
 ## Setup
 
