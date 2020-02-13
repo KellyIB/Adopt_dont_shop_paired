@@ -38,11 +38,12 @@ https://dbdiagram.io/d/5e44a75d9e76504e0ef161b5
 
 ## Highlights
 
-* 100% model and feature test coverave via simplecov.
+* 100% model and feature test coverage via simplecov.
 
 
 ## Pet adoption status
 
-1. 'pending' status means a pet has an approved application on it.
-2. Shelters with a pet who has a pending status may not be deleted.
+1. 'adoptable' status means a per may have an application approved on it. Only one application may be approved on a pet at a time.
+2. 'pending' status means a pet has an approved application on it.
+3. Shelters with a pet who has a pending status may not be deleted.
 
